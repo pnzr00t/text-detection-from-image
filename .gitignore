@@ -1,0 +1,4 @@
+
+#Ignore folders
+weights/*
+deep-text-recognition-benchmark/*
