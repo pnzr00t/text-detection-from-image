@@ -1,0 +1,1 @@
+# text-detection-from-image
