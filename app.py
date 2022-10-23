@@ -21,6 +21,8 @@ app = FastAPI()
 # Init CraftNets
 #request_api_count = 0
 craft_args, craft_net, refiner_craft_net = init_craft_networks(refiner=False, debug=False)
+text_detection_craft_args_refine, text_detection_craft_net_refine, text_detection_refiner_craft_net_refine = init_craft_networks(refiner=True, debug=False)
+text_detection_craft_args_not_refine, text_detection_craft_net_not_refine, text_detection_refiner_craft_net_not_refine = init_craft_networks(refiner=False, debug=False)
 edge_connect_model = init_edge_connect_model(mode=3)
 
 # TODO: Remove late, if we don't need reinit models
@@ -75,10 +77,12 @@ async def read_text_detection(url: Optional[str] = None):
 
         source_image, output_image = pipeline(
             input_image_url,
-            craft_args,  # Args create with craft nets, and use for text polygons detection
-            craft_net,
-            refiner_craft_net,  # refiner for more text detection accuracy, == none in this project
-            edge_connect_model,  # Inpaint EdgeConnect model, "restore" image
+            text_detection_craft_args_refine, 
+            text_detection_craft_net_refine, 
+            text_detection_refiner_craft_net_refine,
+            text_detection_craft_args_not_refine, 
+            text_detection_craft_net_not_refine, 
+            text_detection_refiner_craft_net_not_refine,
             debug=False
         )
 

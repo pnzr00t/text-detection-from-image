@@ -254,7 +254,7 @@ def test_net(args, net, image, text_threshold, link_threshold, low_text, cuda, p
     # # return final_bboxes, final_polys
     # return bboxes, polys, score_text
 
-def create_text_mask(refine, image_array, debug=False):
+def create_text_mask(args, net, refine_net, image_array, debug=False):
     # # load net
     # net = CRAFT()     # initialize
 
@@ -292,7 +292,7 @@ def create_text_mask(refine, image_array, debug=False):
     #     refine_net.eval()
     #     args.poly = True
 
-    args, net, refine_net = init_craft_networks(refiner=refine, debug=debug)
+    #args, net, refine_net = init_craft_networks(refiner=refine, debug=debug)
 
     t = time.time()
 
@@ -860,7 +860,16 @@ def init_craft_networks(refiner=False, debug=False):
 
 #def pipeline(image_link, model_isr, model_translator, tokenizer_translator, font, debug=True):
 
-def pipeline(image_link, debug=True):
+def pipeline(
+            image_link,
+            text_detection_craft_args_refine, 
+            text_detection_craft_net_refine, 
+            text_detection_refiner_craft_net_refine,
+            text_detection_craft_args_not_refine, 
+            text_detection_craft_net_not_refine, 
+            text_detection_refiner_craft_net_not_refine,
+            debug=True
+            ):
 
     image_path = image_link
     image_file_name = os.path.basename(image_path)
@@ -881,8 +890,18 @@ def pipeline(image_link, debug=True):
     #args = create_craft_args(refine=True)
     #sentence_bboxes, sentence_polys, sentence_score_text = create_text_mask(args, image_array)
 
-    word_bboxes, word_polys, word_score_text = create_text_mask(False, image_array)
-    sentence_bboxes, sentence_polys, sentence_score_text = create_text_mask(True, image_array)
+    word_bboxes, word_polys, word_score_text = create_text_mask(
+        text_detection_craft_args_not_refine, 
+        text_detection_craft_net_not_refine, 
+        text_detection_refiner_craft_net_not_refine,
+        image_array
+        )
+    sentence_bboxes, sentence_polys, sentence_score_text = create_text_mask(
+        text_detection_craft_args_refine, 
+        text_detection_craft_net_refine, 
+        text_detection_refiner_craft_net_refine,
+        image_array
+        )
 
     mask_array_from_words = get_image_mask_from_boxes(image_array, word_bboxes)
 
