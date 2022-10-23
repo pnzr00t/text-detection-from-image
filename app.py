@@ -8,7 +8,7 @@ from fastapi import HTTPException
 # https://stackoverflow.com/questions/62359413/how-to-return-an-image-in-fastapi
 from fastapi.responses import FileResponse # need additionaly install pip install aiofiles
 
-from main import *
+from text_detection import *
 
 import gc
 
@@ -58,8 +58,8 @@ def read_root():
      return {"Hello": "World", "mega_class" : "mega_object.string1"}
 
 # without async memory leaking
-@app.get("/image_remover/")
-async def read_image_remover(url: Optional[str] = None):
+@app.get("/text_detection/")
+async def read_text_detection(url: Optional[str] = None):
     if url is None:
         raise HTTPException(status_code=404, detail="URL not exist")
 
