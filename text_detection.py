@@ -1015,7 +1015,7 @@ def pipeline(
     #compiled_image = compile_image(image_with_deleted_text, paragraph_dict_translated, paragraph_bboxes, debug)
 
     #return source_image_for_output, compiled_image
-    return source_image_for_output, source_image_for_output
+    return paragraph_dict
 
 ##################################################################################################################
 ##################################################################################################################

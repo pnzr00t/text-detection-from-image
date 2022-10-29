@@ -75,7 +75,7 @@ async def read_text_detection(url: Optional[str] = None):
 
     if input_image_url is not None and input_image_url != '':
 
-        source_image, output_image = pipeline(
+        paragraph_dict = pipeline(
             input_image_url,
             text_detection_craft_args_refine, 
             text_detection_craft_net_refine, 
@@ -86,17 +86,12 @@ async def read_text_detection(url: Optional[str] = None):
             debug=False
         )
 
-        if source_image is None or output_image is None:
+        if paragraph_dict is None:
             raise HTTPException(status_code=404, detail="URL not exist")
-
-        # Save output image
-        output_image_path = os.path.join("./results_images", image_file_name)
-        output_image.save(output_image_path)
-
 
         print("Safe out image - ", output_image_path)
         #return FileResponse(output_image_path, media_type="image/jpg")
-        return FileResponse(output_image_path)
+        return JSONResponse(content=paragraph_dict)
     else:
         print('Provide an image url and try again.')
         raise HTTPException(status_code=404, detail="URL not exist")
