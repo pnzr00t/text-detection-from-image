@@ -89,7 +89,7 @@ async def read_text_detection(url: Optional[str] = None):
         if paragraph_dict is None:
             raise HTTPException(status_code=404, detail="URL not exist")
 
-        print("Safe out image - ", output_image_path)
+        #print("Safe out image - ", output_image_path)
         #return FileResponse(output_image_path, media_type="image/jpg")
         return JSONResponse(content=paragraph_dict)
     else:
