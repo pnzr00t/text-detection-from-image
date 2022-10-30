@@ -101,11 +101,12 @@ async def read_text_detection(url: Optional[str] = None):
 
 
 def convert_dict_keys_to_string(mydict):
-    for key in mydict.keys():
+    keys = mydict.keys()
+    for key in keys:
         if type(key) is not str:
             try:
                 mydict[str(key)] = mydict[key]
-            except:
+            except:
                 try:
                     mydict[repr(key)] = mydict[key]
                 except:
