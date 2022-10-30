@@ -86,7 +86,9 @@ async def read_text_detection(url: Optional[str] = None):
             text_detection_refiner_craft_net_not_refine,
             debug=False
         )
-
+        
+        paragraph_dict = convert_dict_keys_to_string(paragraph_dict)
+        
         if paragraph_dict is None:
             raise HTTPException(status_code=404, detail="URL not exist")
 
@@ -97,3 +99,16 @@ async def read_text_detection(url: Optional[str] = None):
         print('Provide an image url and try again.')
         raise HTTPException(status_code=404, detail="URL not exist")
 
+
+def convert_dict_keys_to_string(mydict):
+    for key in mydict.keys():
+        if type(key) is not str:
+            try:
+                mydict[str(key)] = mydict[key]
+            except:
+                try:
+                    mydict[repr(key)] = mydict[key]
+                except:
+                    pass
+        del mydict[key]
+    return mydict
