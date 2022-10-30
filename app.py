@@ -106,7 +106,7 @@ def convert_dict_keys_to_string(mydict):
         if type(key) is not str:
             try:
                 mydict[str(key)] = mydict[key]
-            except:
+            except:
                 try:
                     mydict[repr(key)] = mydict[key]
                 except:
