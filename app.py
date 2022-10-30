@@ -101,7 +101,7 @@ async def read_text_detection(url: Optional[str] = None):
 
 
 def convert_dict_keys_to_string(mydict):
-    keys = mydict.keys()
+    keys = set(mydict.keys())
     for key in keys:
         if type(key) is not str:
             try:

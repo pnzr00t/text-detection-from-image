@@ -738,7 +738,7 @@ def create_paragraph_dict(sent2para_index_sorted, sentence_dict, paragraph_bboxe
             result[el[1]] = {
                 'list': sentence_dict[el[0]]['list'],
                 'splits': 0,
-                'bbox': paragraph_bboxes[el[1]]
+                'bbox': paragraph_bboxes[el[1]].tolist()
             }
     return result
 
