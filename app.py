@@ -60,6 +60,21 @@ text_detection_craft_args_not_refine, text_detection_craft_net_not_refine, text_
 def read_root():
      return {"Hello": "World", "mega_class" : "mega_object.string1"}
 
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: Обязаьельно сделать чтобы в параграфе было разбитие по предложением и по словам
+## Чтобы можно было приблизительно определить размер шрифта и исходя из этого объединять или разъединять предложения
+## По параграфам и блокам
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+## TODO: НУЖНО СДЕЛАТЬ
+
+
 # without async memory leaking
 @app.get("/text_detection/")
 async def read_text_detection(url: Optional[str] = None):
