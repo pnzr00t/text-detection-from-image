@@ -23,7 +23,7 @@ app = FastAPI()
 craft_args, craft_net, refiner_craft_net = init_craft_networks(refiner=False, debug=False)
 text_detection_craft_args_refine, text_detection_craft_net_refine, text_detection_refiner_craft_net_refine = init_craft_networks(refiner=True, debug=False)
 text_detection_craft_args_not_refine, text_detection_craft_net_not_refine, text_detection_refiner_craft_net_not_refine = init_craft_networks(refiner=False, debug=False)
-edge_connect_model = init_edge_connect_model(mode=3)
+#edge_connect_model = init_edge_connect_model(mode=3)
 
 # TODO: Remove late, if we don't need reinit models
 # def reinit_models_if_needed():
