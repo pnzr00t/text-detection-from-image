@@ -7,6 +7,7 @@ from fastapi import HTTPException
 
 # https://stackoverflow.com/questions/62359413/how-to-return-an-image-in-fastapi
 from fastapi.responses import FileResponse # need additionaly install pip install aiofiles
+from fastapi.responses import JSONResponse
 
 from text_detection import *
 
