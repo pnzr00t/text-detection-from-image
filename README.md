@@ -9,7 +9,7 @@
 4. Run command `pip install gdown` (Install google cloud download lib for download weights model from google cloud);
 5. Run command `bash ./install_project.sh` (Downloading libs, and models);
 6. Run command `pip install -r ./requirements.txt`;
-7. Run main.py script, you can chage original image URL in `function test_remover_func():`. Output image will save in local folder `./results_images`.
+7. Run main.py script, you can chage original image URL in `function print_hi_text_detection():`. Output image will save in local folder `./results_images`.
 
 ### Installation and run FastAPI service:
 1. Open console;

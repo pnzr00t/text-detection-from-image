@@ -737,7 +737,7 @@ def create_paragraph_dict(sent2para_index_sorted, sentence_dict, paragraph_bboxe
         else:
             result[el[1]] = {
                 'list': sentence_dict[el[0]]['list'],
-                'splits': 0,
+                'splits': 1,
                 'bbox': paragraph_bboxes[el[1]].tolist()
             }
     return result
@@ -748,25 +748,25 @@ def create_paragraph_dict(sent2para_index_sorted, sentence_dict, paragraph_bboxe
 #     decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
 #     return decoded
 
-def translate_paragraph_dict(dict_, translator_model, translator_tokenizer, debug=False):
+# def translate_paragraph_dict(dict_, translator_model, translator_tokenizer, debug=False):
 
-    result = {}
+    # result = {}
 
-    for key in dict_.keys():
-        result[key] = translate_sentence(' '.join(dict_[key]['list']), translator_model, translator_tokenizer)
-        paragraph_array = result[key].split(' ')
-        step = 0 if dict_[key]['splits']==0 else math.ceil(len(paragraph_array)/dict_[key]['splits'])
-        if debug:
-            print('step ', step)
-        shuffle = 0
-        if step > 0:
-            for i in range(step, len(paragraph_array)+len(result[key])%step, step):
-                if debug:
-                    print(i)
-                paragraph_array.insert(i+shuffle, '\n')
-                shuffle += 1
-        result[key] = ' '.join(paragraph_array)
-    return result
+    # for key in dict_.keys():
+        # result[key] = translate_sentence(' '.join(dict_[key]['list']), translator_model, translator_tokenizer)
+        # paragraph_array = result[key].split(' ')
+        # step = 0 if dict_[key]['splits']==0 else math.ceil(len(paragraph_array)/dict_[key]['splits'])
+        # if debug:
+            # print('step ', step)
+        # shuffle = 0
+        # if step > 0:
+            # for i in range(step, len(paragraph_array)+len(result[key])%step, step):
+                # if debug:
+                    # print(i)
+                # paragraph_array.insert(i+shuffle, '\n')
+                # shuffle += 1
+        # result[key] = ' '.join(paragraph_array)
+    # return result
 
 def search_font_size(image, text, bbox, debug=False):
     if debug:
