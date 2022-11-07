@@ -732,7 +732,7 @@ def create_paragraph_dict(sent2para_index_sorted, sentence_dict, paragraph_bboxe
 
     for el in sent2para_index_sorted:
         if el[1] in result.keys():
-            result[el[1]]['list'] = result[el[1]]['list'] + sentence_dict[el[0]]['list']
+            result[el[1]]['list'] = result[el[1]]['list'] + [("\n", 1.0, -1)] + sentence_dict[el[0]]['list']
             result[el[1]]['splits'] += 1
         else:
             result[el[1]] = {
